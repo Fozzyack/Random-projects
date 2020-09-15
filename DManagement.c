@@ -4,6 +4,9 @@
 #include <conio.h>
 #include <stdbool.h>
 
+#define MAXCHAR         1000
+
+
 int fileexists(const char *filename) {
     FILE *file;
     if (file = fopen(filename, "r")) {
@@ -11,6 +14,18 @@ int fileexists(const char *filename) {
         return 1;
     }
     return 0;
+}
+
+int readingfile(const char *filename) {
+    FILE *file;
+    char str[MAXCHAR];
+    file = fopen(filename, "r");
+    while(fgets(str, MAXCHAR, file) != NULL) {
+        printf("%s", str);
+    }
+    fclose(file);
+    return 0;
+
 }
 
 int password(char pw[]) 

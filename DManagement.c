@@ -4,8 +4,10 @@
 #include <conio.h>
 #include <stdbool.h>
 
-#define MAXCHAR         1000
+#define MAXCHAR         10000
+#define MAXENTRIES      10000
 
+int entries [MAXENTRIES][2];
 
 int fileexists(const char *filename) {
     FILE *file;
@@ -51,7 +53,7 @@ int WelcomeScreen(void)
     int output = 0;
     //INTERFACE
     printf("THIS IS YOUR DIARY MANAGEMENT SYSTEM\n");
-    printf("1. Create new Entry\n2. Edit Entry\n3. Remove Entry\n4. Exit\n");
+    printf("1. Create new Entry\n2. Edit Entry\n3. Remove Entry\n4.Read Diary\n5. Exit\n");
     scanf("%s", input);
     getchar();
 
@@ -70,8 +72,12 @@ int WelcomeScreen(void)
         output = 3;
     }
     else if(strcmp(input, "4") == 0) {
-        printf("Exiting\n");
+        printf("Reading\n");
         output = 4;
+    }
+    else if(strcmp(input, "5") == 0) {
+        printf("Exiting\n");
+        output = 5;
     } else {
         printf("Input not recognised\n");
     }
@@ -80,7 +86,7 @@ int WelcomeScreen(void)
 }
 
 //-------------------------------------------------------
-void Diary(void)
+void Diary(const char *filename)
 {
     int closediary = false;
     int toRun = 0;
@@ -94,6 +100,11 @@ void Diary(void)
                 exit(EXIT_FAILURE);
                 break;
             case 4:
+                printf("Reading\n");
+                readingfile(filename);
+                getchar();
+                break;
+            case 5:
                 printf("Exiting program\n");
                 closediary = true;
                 break;
@@ -130,7 +141,7 @@ int main(int argc, char * argv[]) {
     else {exit(EXIT_FAILURE);}
 
     //INITIALISING DIARY FUNCTION
-    Diary();
+    Diary(argv[2]);
 
 
     getchar();

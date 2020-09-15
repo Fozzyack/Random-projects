@@ -29,30 +29,33 @@ int password(char pw[])
 int WelcomeScreen(void) 
 {
     system("cls");
+    fflush(stdin);
+
     char input[5];
     int output = 0;
     printf("THIS IS YOUR DIARY MANAGEMENT SYSTEM\n");
     printf("1. Create new Entry\n2. Edit Entry\n3. Remove Entry\n4. Exit\n");
-    sscanf("%s", input);
+    scanf("%s", input);
     getchar();
+
     if(strcmp(input, "1") == 0)  {
-        printf("Creating entry");
+        printf("Creating entry\n");
         output = 1;
 
     }
     else if(strcmp(input, "2") == 0) {
-        printf("Editing Entry");
+        printf("Editing Entry\n");
         output = 2;
     }
     else if(strcmp(input, "3") == 0) {
-        printf("Removing Entry");
+        printf("Removing Entry\n");
         output = 3;
     }
     else if(strcmp(input, "4") == 0) {
-        printf("Exiting");
+        printf("Exiting\n");
         output = 4;
     } else {
-        printf("Input not recognised");
+        printf("Input not recognised\n");
     }
     return output;
 
@@ -65,17 +68,17 @@ void Diary(void)
     while (closediary != true)
     {
         toRun = WelcomeScreen();
-        if(toRun == 0)
-        {
-            printf("Error");
-            exit(EXIT_FAILURE);
-        }
-        else if(toRun == 4)
-        {
-            printf("Exiting program");
-            closediary = true;
-        }
         
+        switch (toRun) {
+            case 0:
+                printf("Error\n");
+                exit(EXIT_FAILURE);
+                break;
+            case 4:
+                printf("Exiting program\n");
+                closediary = true;
+                break;
+        }
         printf("===");
     }
 }

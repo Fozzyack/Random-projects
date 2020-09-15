@@ -1,29 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 
-int password(void) {
-    char password[40] = "This is the password";
+int password(char pw[]) 
+{
+
     char Entered[40];
-    printf("Enter password: ");
+    printf("Enter password (40 char max): ");
     scanf("%s", Entered);
     getchar();
 
-    if(strcmp(password, Entered) == 0) {return 1;}
+    if(strcmp(Entered, pw) == 0) {return 1;}
     else {return 0;}
     
+}
+
+void WelcomeScreen(void) 
+{
+    system("cls");
+    printf("THIS IS YOUR DIARY MANAGEMENT SYSTEM\n");
+    printf("1. Create new Entry\n2. Edit Entry\n3. Remove Entry\n4. Exit");
 }
 
 
 
 int main(int argc, char * argv[]) {
 
-    int pwCheck = password();
+    int pwCheck = password(argv[1]);
 
     if (pwCheck == 1) {
         printf("Exit success");
         getchar();
-        exit(EXIT_SUCCESS);
     }
     else if(pwCheck == 0) {
         printf("Exit failure");
@@ -31,6 +39,11 @@ int main(int argc, char * argv[]) {
         exit(EXIT_FAILURE);
     }
     else {exit(EXIT_FAILURE);}
+
+    WelcomeScreen();
+
+
+
 
 
 

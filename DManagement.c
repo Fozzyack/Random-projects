@@ -15,8 +15,8 @@ int fileexists(const char *filename) {
 
 int password(char pw[]) 
 {
-
-    char Entered[40];
+    
+    char Entered[40]; //PASSWORD USER ENTERES
     printf("Enter password (40 char max): ");
     scanf("%s", Entered);
     getchar();
@@ -28,16 +28,19 @@ int password(char pw[])
 
 int WelcomeScreen(void) 
 {
+    //CLEARS SCREEN AND INPUT
     system("cls");
     fflush(stdin);
 
     char input[5];
     int output = 0;
+    //INTERFACE
     printf("THIS IS YOUR DIARY MANAGEMENT SYSTEM\n");
     printf("1. Create new Entry\n2. Edit Entry\n3. Remove Entry\n4. Exit\n");
     scanf("%s", input);
     getchar();
 
+    //OUTPUT OCCURS
     if(strcmp(input, "1") == 0)  {
         printf("Creating entry\n");
         output = 1;
@@ -61,6 +64,7 @@ int WelcomeScreen(void)
 
 }
 
+//-------------------------------------------------------
 void Diary(void)
 {
     int closediary = false;
@@ -68,7 +72,7 @@ void Diary(void)
     while (closediary != true)
     {
         toRun = WelcomeScreen();
-        
+
         switch (toRun) {
             case 0:
                 printf("Error\n");
@@ -79,9 +83,10 @@ void Diary(void)
                 closediary = true;
                 break;
         }
-        printf("===");
+        printf("===\n");
     }
 }
+//-------------------------------------------------------
 
 int main(int argc, char * argv[]) {
 

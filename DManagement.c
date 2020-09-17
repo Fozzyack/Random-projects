@@ -143,7 +143,7 @@ int main(int argc, char * argv[]) {
     //INITIALISING DIARY FUNCTION
     Diary(argv[2]);
 
-
+    printf("Testomg");
     getchar();
     return 0;
 }
